@@ -1,0 +1,166 @@
+/**
+ * Petalnode Paymenter Theme — Centralized Design Token System
+ * Philosophy: "The page is a sketchbook. The world grows out of it."
+ */
+
+:root {
+  /* =========================================================================
+     1. Core Art Direction Color Tokens
+     ========================================================================= */
+  --pn-paper: #FBF6EE;
+  --pn-paper-shade: #F1E7D6;
+  --pn-paper-line: #E4D6C1;
+
+  --pn-ink: #2B2230;
+  --pn-ink-soft: #6B5E6E;
+
+  --pn-blossom-50: #FFF1F4;
+  --pn-blossom-200: #FFC9D6;
+  --pn-blossom-400: #FF8FAB;
+  --pn-blossom-600: #E2557B;
+  --pn-blossom-700: #B8375B; /* AA accessible fill for white text */
+
+  --pn-moss: #6FAF5B;
+  --pn-moss-100: #EAF5E6;
+  --pn-moss-700: #3B732B; /* AA accessible moss text/fill */
+
+  --pn-bark: #6B4A3A;
+  --pn-bark-100: #F4ECE7;
+
+  --pn-lantern: #FFC75A;
+  --pn-lantern-100: #FFF7E0;
+  --pn-lantern-700: #8A5A00; /* AA accessible amber text */
+
+  /* Semantic Aliases */
+  --pn-bg-canvas: var(--pn-paper);
+  --pn-bg-surface: #FFFDF9;
+  --pn-bg-elevated: var(--pn-paper-shade);
+  --pn-border-subtle: var(--pn-paper-line);
+  --pn-border-ink: rgba(43, 34, 48, 0.22);
+  --pn-border-focus: var(--pn-blossom-600);
+
+  --pn-text-primary: var(--pn-ink);
+  --pn-text-secondary: var(--pn-ink-soft);
+  --pn-text-on-accent: #FFFFFF;
+
+  --pn-status-success: var(--pn-moss-700);
+  --pn-status-success-bg: var(--pn-moss-100);
+  --pn-status-warning: var(--pn-lantern-700);
+  --pn-status-warning-bg: var(--pn-lantern-100);
+  --pn-status-danger: #B42343;
+  --pn-status-danger-bg: var(--pn-blossom-50);
+  --pn-status-info: var(--pn-bark);
+  --pn-status-info-bg: var(--pn-bark-100);
+
+  /* =========================================================================
+     2. Typography Tokens
+     ========================================================================= */
+  --pn-font-display: 'Bricolage Grotesque', system-ui, sans-serif;
+  --pn-font-editorial: 'Fraunces', Georgia, serif;
+  --pn-font-body: 'Nunito', system-ui, sans-serif;
+  --pn-font-hand: 'Shantell Sans', cursive, sans-serif;
+  --pn-font-pixel: 'Pixelify Sans', monospace;
+
+  /* Fluid & Modular Font Sizes */
+  --pn-text-xs: 0.75rem;      /* 12px */
+  --pn-text-sm: 0.875rem;     /* 14px */
+  --pn-text-base: 1rem;       /* 16px */
+  --pn-text-lg: 1.125rem;     /* 18px */
+  --pn-text-xl: 1.25rem;      /* 20px */
+  --pn-text-2xl: 1.5rem;      /* 24px */
+  --pn-text-3xl: 2rem;        /* 32px */
+  --pn-text-hero: clamp(2.25rem, 4.2vw, 3.5rem);
+
+  --pn-leading-tight: 1.15;
+  --pn-leading-snug: 1.3;
+  --pn-leading-normal: 1.6;
+
+  /* =========================================================================
+     3. Spacing Scale (4px base grid)
+     ========================================================================= */
+  --pn-space-1: 0.25rem;
+  --pn-space-2: 0.5rem;
+  --pn-space-3: 0.75rem;
+  --pn-space-4: 1rem;
+  --pn-space-5: 1.25rem;
+  --pn-space-6: 1.5rem;
+  --pn-space-8: 2rem;
+  --pn-space-10: 2.5rem;
+  --pn-space-12: 3rem;
+  --pn-space-16: 4rem;
+  --pn-space-20: 5rem;
+
+  /* =========================================================================
+     4. Border Styles & Radii
+     ========================================================================= */
+  --pn-radius-xs: 4px;
+  --pn-radius-sm: 8px;
+  --pn-radius-md: 12px;
+  --pn-radius-lg: 18px;
+  --pn-radius-xl: 24px;
+  --pn-radius-sketch: 14px 18px 15px 20px / 18px 14px 20px 15px;
+
+  --pn-border-thin: 1px solid var(--pn-paper-line);
+  --pn-border-ink-line: 1.5px solid var(--pn-ink);
+
+  /* =========================================================================
+     5. Tactile Paper Shadows
+     ========================================================================= */
+  --pn-shadow-paper-sm: 0 2px 0 rgba(43, 34, 48, 0.08), 0 4px 12px rgba(107, 74, 58, 0.06);
+  --pn-shadow-paper-md: 3px 4px 0 rgba(43, 34, 48, 0.12), 0 10px 24px rgba(107, 74, 58, 0.08);
+  --pn-shadow-paper-lg: 5px 6px 0 rgba(43, 34, 48, 0.16), 0 18px 36px rgba(43, 34, 48, 0.10);
+  --pn-shadow-ink-hard: 3px 3px 0 var(--pn-ink);
+  --pn-shadow-focus: 0 0 0 3px var(--pn-blossom-200), 0 0 0 5px var(--pn-blossom-600);
+
+  /* =========================================================================
+     6. Animation Durations & Easing Functions
+     ========================================================================= */
+  --pn-duration-instant: 90ms;
+  --pn-duration-fast: 160ms;
+  --pn-duration-normal: 260ms;
+  --pn-duration-slow: 420ms;
+  --pn-duration-draw: 750ms;
+
+  --pn-ease-settle: cubic-bezier(0.16, 1, 0.3, 1);
+  --pn-ease-spring: cubic-bezier(0.34, 1.45, 0.64, 1);
+  --pn-ease-ink: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* =========================================================================
+     7. Responsive Breakpoints (Reference Tokens)
+     ========================================================================= */
+  --pn-bp-sm: 640px;
+  --pn-bp-md: 768px;
+  --pn-bp-lg: 1024px;
+  --pn-bp-xl: 1280px;
+  --pn-container-max: 1200px;
+
+  /* =========================================================================
+     8. Z-Index Layers
+     ========================================================================= */
+  --pn-z-base: 1;
+  --pn-z-raised: 10;
+  --pn-z-sticky: 30;
+  --pn-z-header: 40;
+  --pn-z-dropdown: 50;
+  --pn-z-drawer: 60;
+  --pn-z-modal: 70;
+  --pn-z-toast: 80;
+  --pn-z-tooltip: 90;
+
+  /* =========================================================================
+     9. Component State Tokens
+     ========================================================================= */
+  --pn-state-hover-lift: -2px;
+  --pn-state-press-scale: 0.98;
+  --pn-state-disabled-opacity: 0.52;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --pn-duration-instant: 1ms;
+    --pn-duration-fast: 1ms;
+    --pn-duration-normal: 1ms;
+    --pn-duration-slow: 1ms;
+    --pn-duration-draw: 1ms;
+  }
+}

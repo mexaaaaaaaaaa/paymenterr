@@ -1,0 +1,127 @@
+@import "tailwindcss";
+@import "./theme/tokens.css";
+
+@layer base {
+  html {
+    background-color: var(--pn-paper);
+    color: var(--pn-ink);
+    font-family: var(--pn-font-body);
+    font-size: 16px;
+    line-height: var(--pn-leading-normal);
+    -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--pn-paper);
+    color: var(--pn-ink);
+    margin: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--pn-font-display);
+    color: var(--pn-ink);
+    text-wrap: balance;
+  }
+
+  button,
+  a,
+  input,
+  select,
+  textarea {
+    font-family: inherit;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--pn-blossom-600);
+    outline-offset: 2px;
+  }
+}
+
+.font-display {
+  font-family: var(--pn-font-display);
+}
+.font-editorial {
+  font-family: var(--pn-font-editorial);
+}
+.font-hand {
+  font-family: var(--pn-font-hand);
+}
+.font-pixel {
+  font-family: var(--pn-font-pixel);
+}
+.font-body {
+  font-family: var(--pn-font-body);
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Tactile Paper Grain + Ruled Grid Utility */
+.pn-paper-grain {
+  background-color: var(--pn-paper);
+  background-image:
+    radial-gradient(rgba(107, 74, 58, 0.045) 1px, transparent 0),
+    radial-gradient(rgba(43, 34, 48, 0.03) 0.75px, transparent 0);
+  background-size: 24px 24px, 13px 13px;
+  background-position: 0 0, 6px 8px;
+}
+
+.pn-sketch-grid {
+  background-image:
+    linear-gradient(to right, rgba(228, 214, 193, 0.45) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(228, 214, 193, 0.45) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.pn-notebook-lines {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 31px,
+    rgba(228, 214, 193, 0.65) 31px,
+    rgba(228, 214, 193, 0.65) 32px
+  );
+}
+
+/* Keyframes for gentle mascot / indicator motion when reduced-motion is off */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes pn-float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-4px); }
+  }
+  @keyframes pn-sway {
+    0%, 100% { transform: rotate(-2deg); }
+    50% { transform: rotate(2deg); }
+  }
+  @keyframes pn-drawer-in {
+    from { transform: translateX(24px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+  }
+  @keyframes pn-drawer-in-left {
+    from { transform: translateX(-24px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+  }
+  @keyframes pn-page-enter {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .pn-animate-float {
+    animation: pn-float 3.8s ease-in-out infinite;
+  }
+  .pn-animate-sway {
+    animation: pn-sway 4.4s ease-in-out infinite;
+  }
+  .pn-drawer-in {
+    animation: pn-drawer-in 240ms var(--pn-ease-settle) both;
+  }
+  .pn-drawer-in-left {
+    animation: pn-drawer-in-left 240ms var(--pn-ease-settle) both;
+  }
+  .pn-page-enter {
+    animation: pn-page-enter 220ms var(--pn-ease-settle) both;
+  }
+}

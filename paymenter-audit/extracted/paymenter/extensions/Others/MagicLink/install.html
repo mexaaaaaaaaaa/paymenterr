@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MagicLink - Installation Guide</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #fff;
+            color: #1a1a1a;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .wrap {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem 4rem;
+        }
+
+        h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .meta {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        h2 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin: 2rem 0 0.75rem;
+        }
+
+        p, li {
+            font-size: 0.95rem;
+            color: #333;
+        }
+
+        ul, ol {
+            padding-left: 1.25rem;
+            margin: 0.5rem 0 1rem;
+        }
+
+        li {
+            margin-bottom: 0.4rem;
+        }
+
+        code {
+            font-family: 'SF Mono', 'Fira Code', Menlo, Consolas, monospace;
+            background: #f5f5f5;
+            padding: 0.15em 0.4em;
+            border-radius: 3px;
+            font-size: 0.88em;
+        }
+
+        pre {
+            background: #f5f5f5;
+            border: 1px solid #e5e5e5;
+            border-radius: 6px;
+            padding: 1rem;
+            overflow-x: auto;
+            font-size: 0.88rem;
+            line-height: 1.5;
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+        }
+
+        .note {
+            background: #f0f7ff;
+            border-left: 3px solid #3b82f6;
+            padding: 0.75rem 1rem;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+            color: #1e40af;
+        }
+
+        .warn {
+            background: #fefce8;
+            border-left: 3px solid #eab308;
+            padding: 0.75rem 1rem;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+            color: #854d0e;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+
+        th {
+            text-align: left;
+            background: #f5f5f5;
+            padding: 0.6rem 0.75rem;
+            font-weight: 600;
+            border-bottom: 2px solid #e5e5e5;
+        }
+
+        td {
+            padding: 0.5rem 0.75rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .tree {
+            background: #f5f5f5;
+            border: 1px solid #e5e5e5;
+            border-radius: 6px;
+            padding: 1rem;
+            font-family: 'SF Mono', Menlo, Consolas, monospace;
+            font-size: 0.82rem;
+            line-height: 1.7;
+            color: #555;
+            margin: 0.75rem 0;
+        }
+
+        footer {
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e5e5e5;
+            font-size: 0.82rem;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <h1>MagicLink</h1>
+        <div class="meta">v1.0.0 &middot; NEON NEXT GENERATION &middot; Paymenter Extension</div>
+
+        <p>MagicLink adds passwordless login to your Paymenter panel. Users enter their email, receive a one-time link, and log in without a password.</p>
+
+        <h2>Requirements</h2>
+        <ul>
+            <li>Paymenter v1.0 or later</li>
+            <li>A working mail driver (SMTP, Mailgun, etc.) configured in your <code>.env</code></li>
+            <li>Admin access to your Paymenter panel</li>
+        </ul>
+
+        <h2>Installation</h2>
+
+        <h3>Step 1 &mdash; Download the extension</h3>
+        <p>Download the MagicLink ZIP file. Do not rename the folder inside.</p>
+
+        <h3>Step 2 &mdash; Upload to Paymenter</h3>
+        <p><strong>Option A &mdash; Admin Panel (recommended)</strong></p>
+        <ol>
+            <li>Log in to your Paymenter admin panel.</li>
+            <li>Go to <strong>Extensions</strong> in the sidebar.</li>
+            <li>Click <strong>Upload Extension</strong> (or the + button) and select the ZIP file.</li>
+            <li>Paymenter will extract the extension into the correct directory automatically.</li>
+        </ol>
+
+        <p><strong>Option B &mdash; Manual upload via SSH/FTP</strong></p>
+        <ol>
+            <li>Extract the ZIP on your computer.</li>
+            <li>Upload the <code>MagicLink</code> folder to your Paymenter directory at:</li>
+        </ol>
+<pre><code>extensions/Others/MagicLink/</code></pre>
+        <p>It should look like this when done:</p>
+        <div class="tree">
+extensions/Others/MagicLink/
+    MagicLink.php
+    MagicLinkMail.php
+    Http/Controllers/MagicLinkController.php
+    migrations/
+    resources/views/
+    routes/web.php</div>
+
+        <div class="warn"><strong>Important:</strong> The <code>MagicLink</code> folder must sit directly inside <code>extensions/Others/</code>. If it's nested deeper (e.g. <code>extensions/Others/MagicLink/MagicLink/</code>) it won't be detected.</div>
+
+        <h3>Step 3 &mdash; Run migrations</h3>
+        <p>SSH into your server, navigate to your Paymenter root, and run:</p>
+<pre><code>php artisan migrate</code></pre>
+        <p>This creates the <code>magic_link_tokens</code> table. If you uploaded via the admin panel, the extension's <code>installed()</code> method may handle this automatically.</p>
+
+        <h3>Step 4 &mdash; Clear caches</h3>
+<pre><code>php artisan cache:clear
+php artisan route:clear
+php artisan view:clear</code></pre>
+
+        <h3>Step 5 &mdash; Enable the extension</h3>
+        <ol>
+            <li>In the admin panel, go to <strong>Extensions</strong>.</li>
+            <li>Find <strong>Magic Link Login</strong> under the <strong>Others</strong> tab.</li>
+            <li>Toggle it on to enable.</li>
+        </ol>
+
+        <h3>Step 6 &mdash; Verify</h3>
+        <p>Open your Paymenter login page. You should see a <strong>"Sign in with Magic Link"</strong> button below the regular login form.</p>
+
+        <h2>Configuration</h2>
+        <p>Click on the extension in the admin panel to adjust these settings:</p>
+
+        <table>
+            <thead>
+                <tr><th>Setting</th><th>Default</th><th>What it does</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Token Expiry</td><td>15 min</td><td>How long the login link stays valid</td></tr>
+                <tr><td>Max Attempts</td><td>5</td><td>Requests allowed per rate limit window</td></tr>
+                <tr><td>Rate Limit Window</td><td>60 min</td><td>Window for counting max attempts</td></tr>
+            </tbody>
+        </table>
+
+        <h2>Mail setup</h2>
+        <p>MagicLink sends a login email to users. Make sure your Paymenter <code>.env</code> has working mail settings:</p>
+<pre><code>MAIL_MAILER=smtp
+MAIL_HOST=smtp.example.com
+MAIL_PORT=587
+MAIL_USERNAME=your@email.com
+MAIL_PASSWORD=your-password
+MAIL_ENCRYPTION=tls</code></pre>
+        <p>Test by sending yourself a password reset before going live.</p>
+
+        <h2>Troubleshooting</h2>
+
+        <p><strong>Button doesn't appear on the login page</strong></p>
+        <ul>
+            <li>Confirm the extension is enabled under Extensions in the admin panel.</li>
+            <li>Run <code>php artisan route:clear && php artisan view:clear</code>.</li>
+            <li>Check the folder is at <code>extensions/Others/MagicLink/</code> with no extra nesting.</li>
+        </ul>
+
+        <p><strong>Emails not arriving</strong></p>
+        <ul>
+            <li>Check your mail config in <code>.env</code> and test with a password reset email.</li>
+            <li>Look in spam/junk folders.</li>
+            <li>Check <code>storage/logs/laravel.log</code> for SMTP errors.</li>
+        </ul>
+
+        <p><strong>Token says "invalid" or "expired"</strong></p>
+        <ul>
+            <li>Links expire after the configured token expiry (default 15 min).</li>
+            <li>Each link is single-use &mdash; requesting a new one invalidates the previous.</li>
+            <li>Make sure the <code>magic_link_tokens</code> table exists (<code>php artisan migrate</code>).</li>
+        </ul>
+
+        <p><strong>Rate limit hit too quickly</strong></p>
+        <ul>
+            <li>Increase the max attempts or rate limit window in the extension settings.</li>
+        </ul>
+
+        <h2>How it works</h2>
+        <ol>
+            <li>User clicks "Sign in with Magic Link" on the login page.</li>
+            <li>They enter their email and submit the form.</li>
+            <li>A random 64-character token is generated, hashed with SHA-256, and stored in the database with an expiry.</li>
+            <li>The user receives an email with a one-time login link.</li>
+            <li>Clicking the link validates the token, logs the user in, and redirects them to their dashboard.</li>
+        </ol>
+
+        <div class="note">Tokens are stored as SHA-256 hashes &mdash; the raw token is never saved. Each token can only be used once.</div>
+
+        <h2>Support</h2>
+        <p>NEON NEXT GENERATION PTY LTD<br>
+        ABN 86 686 080 704</p>
+
+        <footer>
+            &copy; 2026 NEON NEXT GENERATION PTY LTD &middot; MagicLink v1.0.0
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,6 @@
+{
+  "name": "Petalnode Paymenter Theme",
+  "description": "Cozy handmade sketchbook theme architecture, design tokens, Rough.js sketch primitives, and GSAP motion foundation for Paymenter.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
